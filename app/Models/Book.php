@@ -32,7 +32,7 @@ class Book extends Model
         return $this->hasMany(Borrow::class);
     }
 
-    public function getSlugOptions()
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('title')

@@ -20,7 +20,7 @@ class Category extends Model
         return $this->hasMany(Book::class) ;
     }
 
-    public function getSlugOptions()
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('name')

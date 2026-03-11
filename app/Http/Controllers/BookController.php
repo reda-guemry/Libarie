@@ -26,6 +26,10 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
+        // return response()->json([
+        //     'book' => $request->validated()
+        // ], 201) ;
+        
         $book = Book::create($request->validated()) ;
         return response()->json([
             'message' => 'Book created successfully',
