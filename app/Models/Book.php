@@ -27,6 +27,11 @@ class Book extends Model
         return $this->belongsTo(Category::class) ;
     }
 
+    public function borrows()
+    {
+        return $this->hasMany(Borrow::class);
+    }
+
     public function getSlugOptions()
     {
         return SlugOptions::create()
