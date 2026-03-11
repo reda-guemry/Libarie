@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('books', BookController::class)->only(['index' , 'show'])  ;
 
     Route::post('/books/{book}/borrow', [BorrowController::class, 'emprunter']) ;
+    Route::post('/borrows/{borrow}/return', [BorrowController::class, 'retourner']) ;
 
 
 

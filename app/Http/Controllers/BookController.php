@@ -38,8 +38,6 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        $book->increment('views');
-
         return response()->json([
             'book' => new BookResource($book)
         ], 200) ;
