@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('title') ; 
             $table->string('slug')->unique() ;
             $table->string('author') ;
-            $table->text('description') ;
+            $table->text('description')->nullable() ;
             $table->integer('total_copies') ; 
             $table->integer('available_copies') ;
             $table->integer('degraded_copies') ;
-            $table->integer('views') ;
+            $table->integer('views')->default(0) ;
 
             $table->timestamps();
         });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategorUpdateyRequest;
 use App\Http\Requests\CategoryRequest;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::withCount('books')->get() ;
-        return response()->json($categories) ;
+        return response()->json([
+            'categories' => CategoryResource::collection($categories)
+        ]) ;
     }
 
     /**
@@ -29,7 +32,7 @@ class CategoryController extends Controller
 
         return response()->json([
             'message' => 'Category created successfully' ,
-            'category' => $category ,
+            'category' => new CategoryResource($category) ,
         ] , 201) ;
     }
 
@@ -38,7 +41,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return response()->json([$category] , 200) ;
+        return response()->json([
+            'category' => new CategoryResource($category)
+        ] , 200) ;
     }
 
     /**
@@ -52,7 +57,7 @@ class CategoryController extends Controller
 
         return response()->json([
             'message' => 'Category updated successfully' ,
-            'category' => $category ,
+            'category' => new CategoryResource($category) ,
         ] , 200) ;
     }
 

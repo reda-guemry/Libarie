@@ -11,7 +11,7 @@ class UpdateBookRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class UpdateBookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'categorie_id' => 'sometimes|exists:categories,id',
+            'title' => 'string|sometimes|max:255',
+            'author' => 'string|sometimes|max:255',
+            'description' => 'string|nullable',
+            'total_copies' => 'integer|sometimes|min:0',
+            'available_copies' => 'integer|sometimes|min:0',
+            'degraded_copies' => 'integer|sometimes|min:0',
         ];
     }
 }
